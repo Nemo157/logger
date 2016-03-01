@@ -77,7 +77,7 @@ impl Logger {
                     Str(ref string) => string.clone(),
                     Method => format!("{}", req.method),
                     URI => format!("{}", req.url),
-                    Status => format!("{}", res.status.unwrap()),
+                    Status => res.status.map(|status| format!("{}", status)).unwrap_or_default(),
                     ResponseTime => format!("{} ms", response_time_ms)
                 }
             };
